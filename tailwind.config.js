@@ -8,6 +8,9 @@ export default {
     extend: {
       fontFamily: {
         inter: "'Inter', sans-serif",
+      },
+      colors:{
+        btnColor: "#F75B5F",
       }
     },
   },
