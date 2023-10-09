@@ -4,6 +4,9 @@ import Home from "../pages/Home/Home";
 import Services from "../pages/Services/Services";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import Events from "../pages/Events/Events";
+import PrivateRoutes from "./PrivateRoutes";
+
 
 const router = createBrowserRouter([
     {
@@ -17,6 +20,10 @@ const router = createBrowserRouter([
         {
             path: "/services",
             element: <Services></Services>
+        },
+        {
+            path: "events/:id",
+            element: <PrivateRoutes><Events></Events></PrivateRoutes>
         },
         {
             path: "/about",
