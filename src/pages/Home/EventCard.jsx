@@ -11,8 +11,8 @@ const EventCard = ({ event }) => {
       </figure>
       <div className="card-body">
         <h2 className="text-2xl font-extrabold">{name}</h2>
-        {description.length > 100 ? (
-          <p className="leading-7 text-gray-500">{description.slice(0, 100)}...</p>
+        {description.length > 200 ? (
+          <p className="leading-7 text-gray-500">{description.slice(0, 200)}...</p>
         ) : (
           <p className="leading-7 text-gray-500">{description}</p>
         )}

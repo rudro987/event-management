@@ -1,17 +1,22 @@
+
 import { useParams } from "react-router-dom";
+import useJsonLoader from "../../Hooks/useJsonLoader";
+import Event from "./Event";
+import { useEffect, useState } from 'react';
 
 const Events = () => {
+    const [singleEvent, setSingleEvent] = useState({});
     const {id} = useParams();
-    console.log(id)
+    const {data, loading} = useJsonLoader('../../../events.json');
+    
+    useEffect(() => {
+        const foundEvent = data?.find(event => event.id == id);
+        setSingleEvent(foundEvent);
+    }, [data, id, loading]);
+    
     return (
         <div>
-            <div>
-            <img
-      className="h-96 w-full rounded-lg object-cover object-center"
-      src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
-      alt="nature image"
-    />
-            </div>
+            <Event data={singleEvent}></Event>
         </div>
     );
 };

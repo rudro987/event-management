@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -9,16 +11,32 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+  const [loginError, setLoginError] = useState('');
+  const [loginSuccess, setLoginSuccess] = useState('');
+
     const handleLogin = e => {
         e.preventDefault();
         const form = new FormData(e.target);
         const email = form.get("email");
         const password = form.get("password");
+        setLoginSuccess('');
+        setLoginError('');
 
         loginUser(email, password)
-        .then(res => navigate(location?.state ? location.state : "/"))
-        .catch(err => console.error(err))
+        .then(res => {
+          setLoginSuccess('User Logged in Successfully!');
+          setTimeout(() => {
+          navigate(location?.state ? location.state : "/");
+        }, 1500);
+      })
+        .catch(err => setLoginError(err.message))
     }
+
+    useEffect(() => {
+      loginError && toast.error(loginError);
+      loginSuccess && toast.success(loginSuccess);
+    }, [loginError, loginSuccess])
+
 
   return (
     <div className="py-6 flex flex-col justify-center sm:py-12">
@@ -79,7 +97,7 @@ const Login = () => {
               
             </div>
             </form>
-            
+            <ToastContainer></ToastContainer>
           </div>
         </div>
       </div>

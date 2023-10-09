@@ -1,8 +1,15 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
+  const [registrationError, setRegistrationError] = useState('');
+  const [registrationSuccess, setRegistrationSuccess] = useState('');
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
     const {registerUser} = useContext(AuthContext);
 
@@ -12,11 +19,25 @@ const Register = () => {
         const name = form.get("name");
         const email = form.get("email");
         const password = form.get("password");
+        setRegistrationError('');
+        setRegistrationSuccess('');
 
         registerUser(email, password)
-        .then(res => console.log(res))
-        .catch(err => console.error(err))
+        .then(res => {
+          setTimeout(() => {
+            navigate(location?.state ? location.state : "/");
+          }, 2000);
+          setRegistrationSuccess('User created successfully');
+        })
+        .catch(err => {
+          setRegistrationError(err.message)
+        });
     }
+
+    useEffect(() => {
+      registrationError && toast.error(registrationError);
+      registrationSuccess && toast.success(registrationSuccess);  
+    },[registrationError, registrationSuccess]);
     
 
 
@@ -90,7 +111,7 @@ const Register = () => {
                 </div>
               </div>
               </form>
-              
+              <ToastContainer></ToastContainer>
             </div>
           </div>
         </div>

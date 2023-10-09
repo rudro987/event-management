@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: "'Inter', sans-serif",
+        cormorant: "'Cormorant Garamond', serif",
       },
       colors:{
         btnColor: "#F75B5F",
