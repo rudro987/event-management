@@ -7,6 +7,7 @@ import Register from "../pages/Authentication/Register";
 import Events from "../pages/Events/Events";
 import PrivateRoutes from "./PrivateRoutes";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Profile from "../pages/Profile/Profile";
 
 
 const router = createBrowserRouter([
@@ -21,19 +22,15 @@ const router = createBrowserRouter([
         },
         {
             path: "/events",
-            element: <Services></Services>
+            element: <PrivateRoutes><Services></Services></PrivateRoutes>
         },
         {
             path: "events/:id",
             element: <PrivateRoutes><Events></Events></PrivateRoutes>
         },
         {
-            path: "/about",
-            element: <h1>About page</h1>
-        },
-        {
-            path: "/contact",
-            element: <h1>Contact page</h1>
+            path: "/profile",
+            element: <PrivateRoutes><Profile></Profile></PrivateRoutes>
         },
         {
             path: "/login",

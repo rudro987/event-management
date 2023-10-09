@@ -6,7 +6,7 @@ const EvenetsCard = () => {
     if(loading) return <span className="loading loading-dots loading-lg"></span>
     console.log(data)
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-20 px-5 lg:px-0">
             {
                 data.map(event => <EventCard key={event.id} event={event}></EventCard>)
             }

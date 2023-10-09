@@ -5,7 +5,7 @@ import NewsLetter from "./NewsLetter";
 
 const Home = () => {
     return (
-        <div>
+        <div data-aos="animation_name">
         <Banner></Banner>
         <Info></Info>
         <EvenetsCard></EvenetsCard>

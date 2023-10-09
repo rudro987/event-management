@@ -48,7 +48,7 @@ const Register = () => {
           setRegistrationSuccess('User created successfully');
           setTimeout(() => {
             navigate(location?.state ? location.state : "/");
-          }, 5000);
+          }, 1500);
         })
         .catch(err => {
           setRegistrationError(err.message)

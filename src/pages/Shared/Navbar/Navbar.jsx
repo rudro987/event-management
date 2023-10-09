@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li>
+      <li className="text-xl font-semibold">
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
@@ -22,7 +22,7 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li>
+      <li className="text-xl font-semibold">
         <NavLink
           to="/events"
           className={({ isActive, isPending }) =>
@@ -32,34 +32,24 @@ const Navbar = () => {
           Events
         </NavLink>
       </li>
-      <li>
+      <li className="text-xl font-semibold">
         <NavLink
-          to="/about"
+          to="/profile"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }
         >
-          About
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/contact"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          Contact
+          Profile
         </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 py-10 flex-col lg:flex-row">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost bg-white lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -77,37 +67,37 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52 "
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52 bg-white"
           >
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">The Party Poppers</a>
+        <a className="font-bold text-btnColor normal-case text-xl lg:text-4xl ">The Party Poppers</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       {
         user ?
-        <div className="navbar-end flex gap-3">
+        <div className="navbar-end flex gap-5">
         <div>
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
+        <div className="w-20 rounded-full">
           <img src={user.photoURL || `https://i.ibb.co/sH0Fh3T/user.png`} alt={user.displayName} />
         </div>
       </label>
       </div>
-        <div>{user.displayName}</div>
-        <div><button className="btn" onClick={handeLogOut}>Log Out</button></div>
+        <div className="text-xl font-semibold">{user.displayName}</div>
+        <div><button className="btn text-base w-28 lg:w-full md:text-xl font-semibold bg-btnColor text-white hover:bg-gray-500 hover:text-black" onClick={handeLogOut}>Log Out</button></div>
         </div>
         :
         <div className="navbar-end">
-        <Link to="/login" className="btn rounded-l-lg rounded-r-none">
+        <Link to="/login" className="btn text-xl font-semibold rounded-l-lg rounded-r-none bg-[#F75B5F] text-white hover:bg-gray-500 hover:text-black">
           Login
         </Link>
         <Link
           to="/register"
-          className="btn rounded-l-none rounded-r-lg bg-[#F75B5F]"
+          className="btn text-xl font-semibold rounded-l-none rounded-r-lg bg-[#F75B5F] text-white hover:bg-gray-500 hover:text-black"
         >
           Register
         </Link>
