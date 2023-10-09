@@ -1,9 +1,22 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
 
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext);
+  const [loginActive, setLoginActive] = useState(false);
+  const [registerActive, setRegisterActive] = useState(false);
+
+  const handleLoginClick = () => {
+    setLoginActive(true);
+    setRegisterActive(false);
+  };
+
+  const handleRegisterClick = () => {
+    setLoginActive(false);
+    setRegisterActive(true);
+  };
+
   const handeLogOut = () => {
     logOut()
     .then()
@@ -46,10 +59,12 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 py-10 flex-col lg:flex-row" data-aos="zoom-out">
+    <div className={`navbar bg-base-100 py-10 flex-col gap-5 md:flex-row ${
+        loginActive ? "login-active" : registerActive ? "register-active" : ""
+      }`}>
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost bg-white lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost bg-white md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -67,14 +82,14 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52 bg-white"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52 bg-white md:bg-white"
           >
             {links}
           </ul>
         </div>
-        <a className="font-bold text-btnColor normal-case text-xl lg:text-4xl ">The Party Poppers</a>
+        <a className="font-bold text-btnColor normal-case text-xl md:text-2xl ">The Party Poppers</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       {
@@ -87,17 +102,23 @@ const Navbar = () => {
         </div>
       </label>
       </div>
-        <div className="text-xl font-semibold">{user.displayName}</div>
-        <div><button className="btn text-base w-28 lg:w-full md:text-xl font-semibold bg-btnColor text-white hover:bg-gray-500 hover:text-black" onClick={handeLogOut}>Log Out</button></div>
+        <div className="text-lg md:text-xl font-semibold">{user.displayName}</div>
+        <div><button className="btn text-base w-28 lg:w-full font-semibold bg-btnColor text-white hover:bg-gray-500 hover:text-black" onClick={handeLogOut}>Log Out</button></div>
         </div>
         :
         <div className="navbar-end">
-        <Link to="/login" className="btn text-xl font-semibold rounded-l-lg rounded-r-none bg-[#F75B5F] text-white hover:bg-gray-500 hover:text-black">
+        <Link to="/login" className={`btn border-none text-base font-semibold rounded-l-lg rounded-r-none ${
+                loginActive ? "bg-gray-500 text-black hover:bg-gray-500 hover:text-black" : "bg-btnColor text-white hover:bg-gray-500 hover:text-black"
+              }`}
+              onClick={handleLoginClick}>
           Login
         </Link>
         <Link
           to="/register"
-          className="btn text-xl font-semibold rounded-l-none rounded-r-lg bg-[#F75B5F] text-white hover:bg-gray-500 hover:text-black"
+          className={`btn text-base border-none font-semibold rounded-l-none rounded-r-lg ${
+                registerActive ? "bg-gray-500 text-black hover:bg-gray-500 hover:text-black" : "bg-btnColor text-white hover:bg-gray-500 hover:text-black"
+              }`}
+              onClick={handleRegisterClick}
         >
           Register
         </Link>

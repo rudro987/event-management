@@ -28,7 +28,7 @@ const Register = () => {
           setRegistrationError( 'Password should be at least 6 characters long!');
           return;
         }else if(!/[A-Z]/.test(password)){
-          setRegistrationError( 'Your password Should have at least one uppercase character!');
+          setRegistrationError( 'Your password Should have at least one uppercase character and one special character!');
           return;
         }else if (!/[!@#$%^&*()_+{}\\[\]:;<>,.?~\\-]/.test(password)) {
           setRegistrationError("Password must contain at least one special character.");
@@ -63,7 +63,7 @@ const Register = () => {
 
 
     return (
-        <div className="py-6 flex flex-col justify-center sm:py-12">
+        <div className="py-6 flex flex-col justify-center sm:py-12"  data-aos="flip-left">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-red-300 to-red-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
@@ -118,7 +118,7 @@ const Register = () => {
                   </div>
                   <div className="relative top-5">
                     <button className="bg-btnColor text-white rounded-md px-2 py-3 w-full">
-                      Submit
+                      Register
                     </button>
                   </div>
                   <div className="relative top-5 pt-5">

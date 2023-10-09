@@ -24,7 +24,10 @@ const Login = () => {
         }, 1500);
       })
       .catch((err) => {
-        toast.error(err.message);
+        if(err.code === "auth/invalid-login-credentials"){
+          toast.error('Login error: Email or Password is incorrect!');
+        }
+        
       });
   }
 
@@ -43,7 +46,7 @@ const Login = () => {
 
 
   return (
-    <div className="py-6 flex flex-col justify-center sm:py-12">
+    <div className="py-6 flex flex-col justify-center sm:py-12" data-aos="flip-right">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="absolute inset-0 bg-gradient-to-r from-red-300 to-red-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
@@ -76,7 +79,7 @@ const Login = () => {
                 </div>
                 <div className="relative top-5">
                   <button className="bg-btnColor text-white rounded-md px-2 py-3 w-full">
-                    Submit
+                    Login
                   </button>
                 </div>
                 

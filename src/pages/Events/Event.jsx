@@ -25,16 +25,16 @@ const Event = ({ data }) => {
 
 
   return (
-    <div>
+    <div className="max-w-[1440px] mx-auto">
       <div>
-        <img src={image} className="rounded-lg w-full" />
-        <div className="flex-col text-center lg:flex gap-5 justify-center items-center mt-10">
+        <div data-aos="zoom-in"><img src={image} className="rounded-lg w-full" /></div>
+        <div className="flex-col text-center lg:flex gap-5 justify-center items-center mt-10" data-aos="slide-up">
         <h1 className="text-3xl font-bold">Interested in going? Book your Event now </h1>
         <button onClick={handleClick} className="btn rounded-lg text-white bg-btnColor font-extrabold text-xl hover:bg-gray-500">Book Now at ${price}</button>
         </div>  
       </div>
 
-      <div>
+      <div data-aos="slide-down">
         <h1 className="text-6xl text-center font-bold py-10">{name}</h1>
         <p className="text-justify mb-20 text-xl leading-8 px-5 lg:px-0">{description}</p>
       </div>

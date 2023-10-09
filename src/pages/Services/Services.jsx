@@ -10,14 +10,14 @@ const Events = () => {
         if(clickedEvents){
             setEvents(clickedEvents);
         }else{
-            setNoData('You have not donated yet!');
+            setNoData('You have not selected any event yet!');
         }
     }, [])
 
     return (
-        <div className='pt-52 pb-44'>
+        <div className='pt-20 pb-20 max-w-[1440px] mx-auto'>
             {
-                noData ? <p className='h-[70vh] flex justify-center items-center'>{noData}</p> 
+                noData ? <p className='h-[40vh] lg:h-[70vh] flex justify-center items-center text-2xl lg:text-4xl'>{noData}</p> 
                 : 
                 <div className='p-2'>
                 <div className=''>

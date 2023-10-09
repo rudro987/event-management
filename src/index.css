@@ -10,3 +10,12 @@
     border: 1px solid #F75B5F;
     border-radius: 4px;
 }
+
+.menu li > *:not(ul):not(.menu-title):not(details):active, .menu li > *:not(ul):not(.menu-title):not(details).active, .menu li > details > summary:active{
+    background: none !important;
+    color:#1F2937;
+}
+:where(.menu li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):not(.active):hover, :where(.menu li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):not(.active):hover{
+    background: none !important;
+    color:#1F2937;
+}
