@@ -1,4 +1,4 @@
-const Services = () => {
+const Events = () => {
     return (
         <div>
             <h2 className="text-3xl">Services page</h2>
@@ -6,4 +6,4 @@ const Services = () => {
     );
 };
 
-export default Services;
+export default Events;

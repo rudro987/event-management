@@ -1,41 +1,45 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+  const { loginUser, googleSignIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const {loginUser} = useContext(AuthContext);
-    const location = useLocation();
-    const navigate = useNavigate();
+  const handleLoginWithEmailPassword = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const email = form.get("email");
+    const password = form.get("password");
 
-  const [loginError, setLoginError] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState('');
-
-    const handleLogin = e => {
-        e.preventDefault();
-        const form = new FormData(e.target);
-        const email = form.get("email");
-        const password = form.get("password");
-        setLoginSuccess('');
-        setLoginError('');
-
-        loginUser(email, password)
-        .then(res => {
-          setLoginSuccess('User Logged in Successfully!');
-          setTimeout(() => {
+    loginUser(email, password)
+      .then((res) => {
+        toast.success('User Logged in Successfully!');
+        setTimeout(() => {
           navigate(location?.state ? location.state : "/");
         }, 1500);
       })
-        .catch(err => setLoginError(err.message))
-    }
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  }
 
-    useEffect(() => {
-      loginError && toast.error(loginError);
-      loginSuccess && toast.success(loginSuccess);
-    }, [loginError, loginSuccess])
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((res) => {
+        toast.success('User Logged in Successfully!');
+        setTimeout(() => {
+          navigate(location?.state ? location.state : "/");
+        }, 1500);
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  }
 
 
   return (
@@ -49,7 +53,7 @@ const Login = () => {
                 Login your account
               </h1>
             </div>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLoginWithEmailPassword}>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div className="relative top-3">
@@ -75,11 +79,16 @@ const Login = () => {
                     Submit
                   </button>
                 </div>
-                <div className="relative top-5">
+                
+              </div>
+              
+            </div>
+            </form>
+            <div className="relative top-5">
                   <h1 className="text-xl font-semibold text-center mb-3">
                     Or
                   </h1>
-                  <button className="bg-btnColor text-white rounded-md px-2 py-3 w-full">
+                  <button onClick={handleGoogleSignIn} className="bg-btnColor text-white rounded-md px-2 py-3 w-full">
                     Login with Google
                   </button>
                 </div>
@@ -93,10 +102,6 @@ const Login = () => {
                     </Link>
                   </p>
                 </div>
-              </div>
-              
-            </div>
-            </form>
             <ToastContainer></ToastContainer>
           </div>
         </div>

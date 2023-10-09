@@ -5,7 +5,7 @@ const Footer = () => {
   let year = getYear.getFullYear();
 
   return (
-    <footer className="footer footer-center p-10 bg-gray-400 text-base-content rounded">
+    <footer className="footer footer-center p-10 bg-gray-400 text-base-content">
       <nav className="grid grid-flow-col gap-4">
         <Link to="/" className="link link-hover font-bold text-lg">Home</Link>
         <Link to="/events" className="link link-hover font-bold text-lg">Events</Link>

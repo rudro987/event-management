@@ -24,12 +24,12 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/services"
+          to="/events"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }
         >
-          Services
+          Events
         </NavLink>
       </li>
       <li>
@@ -77,7 +77,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52 "
           >
             {links}
           </ul>
@@ -89,8 +89,16 @@ const Navbar = () => {
       </div>
       {
         user ?
-        <div className="navbar-end">
-        <button className="btn" onClick={handeLogOut}>Log Out</button>
+        <div className="navbar-end flex gap-3">
+        <div>
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img src={user.photoURL || `https://i.ibb.co/sH0Fh3T/user.png`} alt={user.displayName} />
+        </div>
+      </label>
+      </div>
+        <div>{user.displayName}</div>
+        <div><button className="btn" onClick={handeLogOut}>Log Out</button></div>
         </div>
         :
         <div className="navbar-end">

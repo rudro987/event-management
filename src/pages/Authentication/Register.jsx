@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const [registrationError, setRegistrationError] = useState('');
@@ -17,17 +18,37 @@ const Register = () => {
         e.preventDefault();
         const form = new FormData(e.target);
         const name = form.get("name");
+        const image = form.get('image');
         const email = form.get("email");
         const password = form.get("password");
         setRegistrationError('');
         setRegistrationSuccess('');
 
+        if(password.length < 6){
+          setRegistrationError( 'Password should be at least 6 characters long!');
+          return;
+        }else if(!/[A-Z]/.test(password)){
+          setRegistrationError( 'Your password Should have at least one uppercase character!');
+          return;
+        }else if (!/[!@#$%^&*()_+{}\\[\]:;<>,.?~\\-]/.test(password)) {
+          setRegistrationError("Password must contain at least one special character.");
+          return;
+        }
+ 
         registerUser(email, password)
         .then(res => {
+          console.log(res.user)
+          updateProfile(res.user, {
+            displayName: name,
+            photoURL: image
+          })
+          .then(res => console.log('profile updated'))
+          .catch(err => console.log(err.message))
+
+          setRegistrationSuccess('User created successfully');
           setTimeout(() => {
             navigate(location?.state ? location.state : "/");
-          }, 2000);
-          setRegistrationSuccess('User created successfully');
+          }, 5000);
         })
         .catch(err => {
           setRegistrationError(err.message)
@@ -67,6 +88,16 @@ const Register = () => {
                   </div>
                   <div className="relative top-3">
                     <input
+                      id="image"
+                      required
+                      name="image"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                      placeholder="Enter your Image URL"
+                    />
+                  </div>
+                  <div className="relative top-3">
+                    <input
                       id="email"
                       required
                       name="email"
@@ -88,15 +119,6 @@ const Register = () => {
                   <div className="relative top-5">
                     <button className="bg-btnColor text-white rounded-md px-2 py-3 w-full">
                       Submit
-                    </button>
-                  </div>
-                  <div className="relative top-5">
-                    <h1 className="text-xl font-semibold text-center mb-3">
-                      {" "}
-                      Or{" "}
-                    </h1>
-                    <button className="bg-btnColor text-white rounded-md px-2 py-3 w-full">
-                      Login with Google
                     </button>
                   </div>
                   <div className="relative top-5 pt-5">
