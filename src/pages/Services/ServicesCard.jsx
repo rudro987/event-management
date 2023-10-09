@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 const ServicesCard = ({ events }) => {
-    const {id, name, image, price, description} = events;
+    const {id, name, image, description} = events;
   return (
     <div className="hero mb-10">
       <div className="hero-content flex-col lg:flex-row gap-10">

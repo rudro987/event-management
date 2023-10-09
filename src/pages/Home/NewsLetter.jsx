@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NewsLetter = () => {
     return (
         <div className='h-80 flex-col py-20 lg:py-0 lg:flex lg:gap-5 justify-center items-center bg-gray-500'>

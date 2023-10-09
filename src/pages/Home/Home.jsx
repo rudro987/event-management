@@ -5,11 +5,15 @@ import NewsLetter from "./NewsLetter";
 
 const Home = () => {
     return (
-        <div data-aos="animation_name">
-        <Banner></Banner>
+        <div>
+        <div data-aos="zoom-in"><Banner></Banner></div>
+        <div className="max-w-[1440px] mx-auto">
+        <div>
         <Info></Info>
-        <EvenetsCard></EvenetsCard>
-        <NewsLetter></NewsLetter>
+        </div>
+        <div data-aos="slide-up"><EvenetsCard></EvenetsCard></div>
+        </div>
+        <div data-aos="slide-down"><NewsLetter></NewsLetter></div>
         </div>
     );
 };

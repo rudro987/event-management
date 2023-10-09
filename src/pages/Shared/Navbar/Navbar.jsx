@@ -46,7 +46,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 py-10 flex-col lg:flex-row">
+    <div className="navbar bg-base-100 py-10 flex-col lg:flex-row" data-aos="zoom-out">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost bg-white lg:hidden">
