@@ -2,6 +2,7 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { FaGoogle } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -92,7 +93,7 @@ const Login = () => {
                     Or
                   </h1>
                   <button onClick={handleGoogleSignIn} className="bg-btnColor text-white rounded-md px-2 py-3 w-full">
-                    Login with Google
+                    <span className="flex justify-center items-center gap-3"><FaGoogle></FaGoogle> Login with Google</span>
                   </button>
                 </div>
                 <div className="relative top-5 pt-5">
