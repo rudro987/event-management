@@ -18,7 +18,7 @@ const EventCard = ({ event }) => {
         )}
         <p className="font-bold text-xl py-2">Price: ${price}</p>
         <div className="card-actions justify-start">
-          <Link to={`/events/${id}`} className="btn bg-btnColor font-semibold text-white hover:bg-gray-500">View Details</Link>
+          <Link to={`/eventdetails/${id}`} className="btn bg-btnColor font-semibold text-white hover:bg-gray-500">View Details</Link>
         </div>
       </div>
     </div>

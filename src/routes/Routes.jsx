@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             element: <PrivateRoutes><Services></Services></PrivateRoutes>
         },
         {
-            path: "events/:id",
+            path: "eventdetails/:id",
             element: <PrivateRoutes><Events></Events></PrivateRoutes>
         },
         {
