@@ -1,4 +1,4 @@
-# Event Management Website
+# Event Management Website - React
 
 [Visit the Live Site](https://event-management-19ddb.web.app/)
 
